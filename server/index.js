@@ -2,11 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 import { errorHandler } from "./middleware/errorMiddleware.js";
 import cors from "cors";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoute.js";
 
 // Load env vars
 dotenv.config();
 
 // Connect to database
+connectDB();
 
 const app = express();
 
@@ -55,7 +58,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 // Debug middleware for order routes
 
 // Routes
-
+app.use("/api/auth", authRoutes);
 // API Documentation
 
 // Home route
